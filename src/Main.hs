@@ -39,7 +39,7 @@ downloadComic name = do
 
 main :: IO ()
 main = do
-    let smbcArchive = "http://www.smbc-comics.com/comic/archive/";
+    let smbcArchive = "http://www.smbc-comics.com/comic/archive/"
     links <- runX $ fromUrl smbcArchive >>> css "option" ! "value" >>. filter (not . null)
     createDirectoryIfMissing False "smbc"
     putStrLn "Downloading into smbc/"
