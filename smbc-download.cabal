@@ -1,13 +1,13 @@
 name:                smbc-download
 version:             0.1.0.0
-synopsis:            Simple project template from stack
+synopsis:            Downloads SMBC comics
 description:         Please see README.md
-homepage:            https://github.com/githubuser/smbc-download#readme
-license:             BSD3
+homepage:            https://github.com/mgoszcz2/smbc-download
+license:             GPLV3
 license-file:        LICENSE
-author:              Author name here
-maintainer:          example@example.com
-copyright:           2016 Author name here
+author:              Maciej Goszczycki
+maintainer:          mgoszcz2@gmail.com
+copyright:           2016 Maciej Goszczycki
 category:            Web
 build-type:          Simple
 cabal-version:       >=1.10
