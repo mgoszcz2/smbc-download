@@ -19,12 +19,14 @@ import Text.XML.HXT.Core
 import Control.Monad.Trans.Maybe
 import System.FilePath.Posix
 import Data.Maybe
+import Control.Monad
 import System.Directory
+import System.IO
 
-smbcComic = "http://www.smbc-comics.com/comic/"
 
 downloadComic :: String -> IO ()
 downloadComic name = do
+    let smbcComic = "http://www.smbc-comics.com/comic/"
     url <- runX $ fromUrl (smbcComic ++ name) >>> css "#cc-comic" ! "src"
     let fname = "smbc/" ++ name ++ takeExtension (head url)
     exists <- doesFileExist fname
@@ -33,10 +35,11 @@ downloadComic name = do
         putStrLn $ "Downloading " ++ fname
         contents <- runMaybeT . openUrl $ head url
         writeFile fname $ fromJust contents
+    hFlush stdout
 
 main :: IO ()
 main = do
-    let smbcArchive = "http://www.smbc-comics.com/comic/archive/"
+    let smbcArchive = "http://www.smbc-comics.com/comic/archive/";
     links <- runX $ fromUrl smbcArchive >>> css "option" ! "value" >>. filter (not . null)
     createDirectoryIfMissing False "smbc"
     putStrLn "Downloading into smbc/"
